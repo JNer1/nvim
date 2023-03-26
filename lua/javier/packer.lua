@@ -28,7 +28,7 @@ return require('packer').startup(function(use)
 
     use('ThePrimeagen/harpoon')
     use('tpope/vim-fugitive')
-    use('tpope/vim-commentary')
+    use "terrortylor/nvim-comment"
 
     use {
         'VonHeikemen/lsp-zero.nvim',
