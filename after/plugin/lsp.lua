@@ -5,19 +5,43 @@ local lsp = require('lsp-zero').preset({
     suggest_lsp_servers = false,
 })
 
+
+local null_ls = require("null-ls")
+local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+
 -- (Optional) Configure lua language server for neovim
 lsp.nvim_workspace()
-
-lsp.on_attach(function(client, bufnr)
-    vim.keymap.set({ 'n', 'x' }, 'gq', function()
-        vim.lsp.buf.format({ async = false, timeout_ms = 10000 })
-    end)
-
-    vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.format()]]
-end)
 
 lsp.setup()
 
 vim.diagnostic.config({
     virtual_text = true
 })
+
+
+
+null_ls.setup({
+    sources = {
+        null_ls.builtins.formatting.prettier,
+        null_ls.builtins.diagnostics.eslint,
+        null_ls.builtins.completion.spell,
+    },
+    on_attach = function(client, bufrn)
+        if client.supports_method("textDocument/formatting") then
+            vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+            vim.api.nvim_create_autocmd("BufWritePre", {
+                group = augroup,
+                buffer = bufnr,
+                callback = function()
+                    vim.lsp.buf.format({ bufnr = bufnr,
+                    filter = function(_client)
+                        return _client.name == "null-ls"
+                     end
+                })
+                end,
+            })
+        end
+    end,
+})
+
+
