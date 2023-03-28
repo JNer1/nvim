@@ -20,6 +20,14 @@ vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 
+vim.cmd([[
+augroup ts_settings
+  autocmd!
+  autocmd FileType typescript,javascript,typescriptreact,javascriptreact,html,css setlocal tabstop=2 shiftwidth=2
+augroup END
+]])
+
+
 vim.opt.smartindent = true
 
 vim.opt.wrap = false
