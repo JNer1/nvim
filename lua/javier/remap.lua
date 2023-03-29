@@ -15,3 +15,5 @@ vim.keymap.set("v","<leader>y", "\"+y")
 vim.keymap.set("n","<leader>Y", "\"+Y")
 
 vim.keymap.set("n", "<C-s>", vim.cmd.w)
+
+vim.keymap.set("n", "<M-e>", "<Esc>e")

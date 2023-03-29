@@ -64,4 +64,6 @@ return require('packer').startup(function(use)
     use('jose-elias-alvarez/null-ls.nvim')
     use "lukas-reineke/indent-blankline.nvim"
     use {'lewis6991/gitsigns.nvim'}
+    use("windwp/nvim-ts-autotag")
+    use {"windwp/nvim-autopairs"}
 end)
