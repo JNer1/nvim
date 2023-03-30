@@ -22,7 +22,7 @@ vim.opt.expandtab = true
 vim.cmd([[
 augroup ts_settings
   autocmd!
-  autocmd FileType typescript,javascript,typescriptreact,javascriptreact,html,css setlocal tabstop=2 shiftwidth=2
+  autocmd FileType typescript,javascript,typescriptreact,javascriptreact,html,css,prisma setlocal tabstop=2 shiftwidth=2
 augroup END
 ]])
 
