@@ -36,6 +36,7 @@ return require('packer').startup(function(use)
     use('ThePrimeagen/harpoon')
     use('tpope/vim-fugitive')
     use "terrortylor/nvim-comment"
+    use 'JoosepAlviste/nvim-ts-context-commentstring'
 
     use {
         'VonHeikemen/lsp-zero.nvim',
