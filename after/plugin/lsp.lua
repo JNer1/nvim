@@ -1,16 +1,14 @@
-local lsp = require("lsp-zero").preset({
-    name = "minimal",
-    set_lsp_keymaps = true,
-    manage_nvim_cmp = true,
-    suggest_lsp_servers = false,
-})
+local lsp = require("lsp-zero").preset({})
 
--- (Optional) Configure lua language server for neovim
-lsp.nvim_workspace()
-
-lsp.on_attach(function(_client, _bufnr)
+lsp.on_attach(function(client, bufnr)
+    lsp.default_keymaps({
+        buffer = bufnr,
+        preserve_mappings = false
+    })
     lsp.buffer_autoformat()
 end)
+
+require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
 
 lsp.setup()
 
