@@ -40,3 +40,11 @@ require("null-ls").setup({
 vim.diagnostic.config({
     virtual_text = true,
 })
+
+local cmp = require('cmp')
+
+cmp.setup({
+    mapping = {
+        ['<CR>'] = cmp.mapping.confirm({ select = true }),
+    }
+})
