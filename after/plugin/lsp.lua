@@ -30,7 +30,10 @@ require("null-ls").setup({
                 group = augroup,
                 buffer = bufnr,
                 callback = function()
-                    vim.lsp.buf.format({ bufnr = bufnr })
+                    vim.lsp.buf.format({
+                        filter = function(_client) return _client.name ~= "tsserver" end,
+                        bufnr = bufnr
+                    })
                 end,
             })
         end
