@@ -20,10 +20,15 @@ return require('packer').startup(function(use)
         requires = { { 'nvim-lua/plenary.nvim' } }
     }
 
+    use { "catppuccin/nvim", as = "catppuccin" }
     use({ 'rose-pine/neovim', as = 'rose-pine' })
     use 'folke/tokyonight.nvim'
 
-    vim.cmd [[colorscheme rose-pine]]
+    vim.g.catppuccin_flavour = "mocha" -- latte, frappe, macchiato, mocha
+
+    require("catppuccin").setup()
+
+    vim.cmd [[colorscheme catppuccin]]
     vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
     vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 
