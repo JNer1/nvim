@@ -1,3 +1,6 @@
 require("ibl").setup {
-    indent = { char = '┊' },
+    indent = {
+        char = '┊',
+        tab_char = '┊'
+    },
 }
