@@ -1,7 +1,8 @@
-require("lualine").setup {
-    options = {
-        disabled_filetypes = {
-            "packer", "NvimTree"
-        }
-    }
-}
+require("lualine").setup({
+	options = {
+		disabled_filetypes = {
+			"packer",
+			"NvimTree",
+		},
+	},
+})

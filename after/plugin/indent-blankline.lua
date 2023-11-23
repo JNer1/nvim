@@ -1,6 +1,6 @@
-require("ibl").setup {
-    indent = {
-        char = '┊',
-        tab_char = '┊'
-    },
-}
+require("ibl").setup({
+	indent = {
+		char = "┊",
+		tab_char = "┊",
+	},
+})

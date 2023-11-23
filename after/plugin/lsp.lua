@@ -1,19 +1,23 @@
-local lsp = require("lsp-zero").preset({})
+local lsp_zero = require("lsp-zero")
+local lspconfig = require("lspconfig")
 
-lsp.on_attach(function(client, bufnr)
-	lsp.default_keymaps({
+lsp_zero.on_attach(function(client, bufnr)
+	lsp_zero.default_keymaps({
 		buffer = bufnr,
 		preserve_mappings = false,
 	})
-	lsp.buffer_autoformat()
 end)
 
-require("lspconfig").lua_ls.setup(lsp.nvim_lua_ls())
-
-lsp.setup()
-
-vim.diagnostic.config({
-	virtual_text = true,
+require("mason").setup({})
+require("mason-lspconfig").setup({
+	ensure_installed = { "tsserver" },
+	handlers = {
+		lsp_zero.default_setup,
+		lua_ls = function()
+			local lua_opts = lsp_zero.nvim_lua_ls()
+			lspconfig.lua_ls.setup(lua_opts)
+		end,
+	},
 })
 
 local cmp = require("cmp")
@@ -21,9 +25,12 @@ local cmp = require("cmp")
 cmp.setup({
 	sources = {
 		{ name = "nvim_lsp" },
+		{ name = "nvim_lua" },
+		{ name = "buffer" },
 		{ name = "luasnip" },
 	},
-	mapping = {
+	formatting = lsp_zero.cmp_format(),
+	mapping = cmp.mapping.preset.insert({
 		["<CR>"] = cmp.mapping.confirm({ select = true }),
-	},
+	}),
 })
