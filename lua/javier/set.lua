@@ -41,3 +41,9 @@ vim.opt.list = true
 
 -- skip backwards compatibility routines and speed up loading
 vim.g.skip_ts_context_commentstring_module = true
+
+vim.filetype.add({
+	extension = {
+		mdx = "mdx",
+	},
+})
