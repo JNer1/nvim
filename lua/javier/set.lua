@@ -9,7 +9,7 @@ vim.opt.guicursor = ""
 
 vim.opt.nu = true
 vim.opt.relativenumber = true
-vim.opt.fillchars:append('eob: ')
+vim.opt.fillchars:append("eob: ")
 vim.opt.signcolumn = "yes"
 
 vim.opt.tabstop = 4
@@ -22,7 +22,6 @@ augroup ts_settings
   autocmd FileType typescript,javascript,typescriptreact,javascriptreact,html,css,prisma,astro setlocal tabstop=2 shiftwidth=2
 augroup END
 ]])
-
 
 vim.opt.smartindent = true
 
@@ -39,3 +38,6 @@ vim.opt.colorcolumn = "80"
 vim.g.mapleader = " "
 
 vim.opt.list = true
+
+-- skip backwards compatibility routines and speed up loading
+vim.g.skip_ts_context_commentstring_module = true
