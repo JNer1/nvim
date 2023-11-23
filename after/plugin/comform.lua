@@ -14,6 +14,7 @@ require("conform").setup({
 		html = { { "prettierd", "prettier" } },
 		css = { { "prettierd", "prettier" } },
 		astro = { { "prettierd", "prettier" } },
+		mdx = { { "prettierd", "prettier" } },
 	},
 	format_on_save = {
 		timeout_ms = 500,
