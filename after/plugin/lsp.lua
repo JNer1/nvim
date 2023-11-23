@@ -23,6 +23,7 @@ null_ls.setup({
                 "jsonc", "yaml", "markdown", "markdown.mdx", "graphql", "handlebars"
             }
         }),
+        null_ls.builtins.formatting.black
     },
 })
 
@@ -53,6 +54,10 @@ vim.diagnostic.config({
 local cmp = require('cmp')
 
 cmp.setup({
+    sources = {
+        { name = 'nvim_lsp' },
+        { name = 'luasnip' },
+    },
     mapping = {
         ['<CR>'] = cmp.mapping.confirm({ select = true }),
     }
