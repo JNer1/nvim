@@ -38,7 +38,12 @@ return require("packer").startup(function(use)
 		run = ":TSUpdate",
 	})
 
-	use("ThePrimeagen/harpoon")
+	use("nvim-lua/plenary.nvim") -- don't forget to add this one if you don't have it yet!
+	use({
+		"ThePrimeagen/harpoon",
+		branch = "harpoon2",
+		requires = { { "nvim-lua/plenary.nvim" } },
+	})
 	use("tpope/vim-fugitive")
 	use("terrortylor/nvim-comment")
 	use("JoosepAlviste/nvim-ts-context-commentstring")
