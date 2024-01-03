@@ -5,4 +5,12 @@ require("lualine").setup({
 			"NvimTree",
 		},
 	},
+	sections = {
+		lualine_c = {
+			{
+				"filename",
+				path = 1,
+			},
+		},
+	},
 })
