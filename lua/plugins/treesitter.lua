@@ -7,6 +7,7 @@ return {
 			ensure_installed = {
 				"javascript",
 				"typescript",
+				"astro",
 				"rust",
 				"c",
 				"lua",
@@ -21,7 +22,7 @@ return {
 
 			-- Automatically install missing parsers when entering buffer
 			-- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
-			auto_install = false,
+			auto_install = true,
 
 			highlight = {
 				enable = true,
