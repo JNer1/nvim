@@ -1,8 +1,5 @@
 return {
 	"windwp/nvim-autopairs",
-	config = function()
-		require("nvim-autopairs").setup({
-			fast_wrap = {},
-		})
-	end,
+	event = "InsertEnter",
+	opts = {}, -- this is equalent to setup({}) function
 }
