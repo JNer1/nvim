@@ -61,6 +61,19 @@ return {
 	},
 	{ "hrsh7th/cmp-nvim-lsp" },
 	{ "hrsh7th/cmp-buffer" },
-	{ "L3MON4D3/LuaSnip" },
+	{
+		"L3MON4D3/LuaSnip",
+		dependencies = { "rafamadriz/friendly-snippets" },
+		config = function()
+			local ls = require("luasnip")
+			require("luasnip.loaders.from_vscode").lazy_load()
+			vim.keymap.set({ "i", "s" }, "<leader>;", function()
+				ls.jump(1)
+			end, { silent = true })
+			vim.keymap.set({ "i", "s" }, "<leader>,", function()
+				ls.jump(-1)
+			end, { silent = true })
+		end,
+	},
 	{ "saadparwaiz1/cmp_luasnip" },
 }
