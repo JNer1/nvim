@@ -1,45 +1,28 @@
 return {
+	{ "williamboman/mason.nvim", config = true },
 	{
-		"VonHeikemen/lsp-zero.nvim",
-		branch = "v3.x",
-		dependencies = {
-			--- Uncomment these if you want to manage LSP servers from neovim
-			{ "williamboman/mason.nvim" },
-			{ "williamboman/mason-lspconfig.nvim" },
-
-			-- LSP Support
-			{ "neovim/nvim-lspconfig" },
-
-			-- Autocompletion
-			{ "hrsh7th/nvim-cmp" }, -- Required
-			{ "hrsh7th/cmp-nvim-lsp" }, -- Required
-			{ "hrsh7th/cmp-buffer" },
-			{ "L3MON4D3/LuaSnip" }, -- Required
-			{ "saadparwaiz1/cmp_luasnip" },
-		},
+		"williamboman/mason-lspconfig.nvim",
 		config = function()
-			local lsp_zero = require("lsp-zero")
-			local lspconfig = require("lspconfig")
+			local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-			lsp_zero.on_attach(function(client, bufnr)
-				lsp_zero.default_keymaps({
-					buffer = bufnr,
-					preserve_mappings = false,
+			local default_setup = function(server)
+				require("lspconfig")[server].setup({
+					capabilities = lsp_capabilities,
 				})
-			end)
+			end
 
-			require("mason").setup({})
 			require("mason-lspconfig").setup({
-				ensure_installed = { "tsserver" },
+				ensure_installed = { "lua_ls", "tsserver" },
 				handlers = {
-					lsp_zero.default_setup,
-					lua_ls = function()
-						local lua_opts = lsp_zero.nvim_lua_ls()
-						lspconfig.lua_ls.setup(lua_opts)
-					end,
+					default_setup,
 				},
 			})
-
+		end,
+	},
+	{ "neovim/nvim-lspconfig" },
+	{
+		"hrsh7th/nvim-cmp",
+		config = function()
 			local cmp = require("cmp")
 
 			cmp.setup({
@@ -49,11 +32,23 @@ return {
 					{ name = "buffer" },
 					{ name = "luasnip" },
 				},
-				formatting = lsp_zero.cmp_format(),
 				mapping = cmp.mapping.preset.insert({
+					-- Enter key confirms completion item
 					["<CR>"] = cmp.mapping.confirm({ select = true }),
+
+					-- Ctrl + space triggers completion menu
+					["<C-Space>"] = cmp.mapping.complete(),
 				}),
+				snippet = {
+					expand = function(args)
+						require("luasnip").lsp_expand(args.body)
+					end,
+				},
 			})
 		end,
 	},
+	{ "hrsh7th/cmp-nvim-lsp" },
+	{ "hrsh7th/cmp-buffer" },
+	{ "L3MON4D3/LuaSnip" },
+	{ "saadparwaiz1/cmp_luasnip" },
 }
