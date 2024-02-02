@@ -44,4 +44,7 @@ vim.filetype.add({
 	extension = {
 		mdx = "mdx",
 	},
+	pattern = {
+		[".env.*"] = "sh",
+	},
 })
