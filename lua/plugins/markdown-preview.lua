@@ -5,4 +5,7 @@ return {
 	build = function()
 		vim.fn["mkdp#util#install"]()
 	end,
+	config = function()
+		vim.api.nvim_set_keymap("n", "<Leader>md", ":MarkdownPreview<CR>", { noremap = true, silent = true })
+	end,
 }
