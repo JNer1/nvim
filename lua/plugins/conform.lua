@@ -18,6 +18,7 @@ return {
 				css = { "prettier" },
 				astro = { "prettier" },
 				mdx = { "prettier" },
+				tex = { "latexindent" },
 			},
 			format_after_save = {
 				lsp_fallback = true,
