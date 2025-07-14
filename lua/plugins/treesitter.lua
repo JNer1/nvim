@@ -15,9 +15,11 @@ return {
 				"vimdoc",
 				"query",
 				"markdown",
+				"regex",
+				"tsx",
+				"latex",
+				"html",
 			},
-
-			ignore_install = { "latex" },
 
 			-- Install parsers synchronously (only applied to `ensure_installed`)
 			sync_install = false,
