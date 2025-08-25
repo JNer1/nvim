@@ -13,14 +13,25 @@ return {
 				{ section = "startup" },
 			},
 		},
-		explorer = { replace_netrw = true, cwd = true },
-		indent = { enabled = true },
+		explorer = { replace_netrw = true },
+		indent = { enabled = false },
 		input = { enabled = true },
 		notifier = {
 			enabled = true,
 			timeout = 3000,
 		},
-		picker = { filter = { cwd = true } },
+		picker = {
+			filter = { cwd = true },
+			sources = {
+				explorer = {
+					layout = {
+						layout = {
+							width = 30,
+						},
+					},
+				},
+			},
+		},
 		quickfile = { enabled = true },
 		scope = { enabled = true },
 		scroll = { enabled = false },
