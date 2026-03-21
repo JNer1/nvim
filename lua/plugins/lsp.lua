@@ -12,7 +12,7 @@ return {
 			end
 
 			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls", "ts_ls" },
+				ensure_installed = { "lua_ls", "vtsls" },
 				handlers = {
 					default_setup,
 					["lua_ls"] = function()
